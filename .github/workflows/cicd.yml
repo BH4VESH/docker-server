@@ -12,9 +12,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
       - name: Create .env file
-        run: echo "mongo_path=${{ secrets.mongo_path }}" >> .env
-        run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-        run: echo "port=${{ secrets.port }}" >> .env
+        run: |
+          echo "mongo_path=${{ secrets.mongo_path }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "port=${{ secrets.port }}" >> .env
+          
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
