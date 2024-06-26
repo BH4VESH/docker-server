@@ -18,7 +18,7 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t bhaveshnarola/nodejs-server .  
+        run: docker build -t bhaveshnarola333/nodejs-server .  
       - name: Publish image to docker hub
         run: docker push bhaveshnarola333/nodejs-server:latest
         
