@@ -1,4 +1,4 @@
-name: Deploy Node Application
+ name: Deploy Node Application
 
 on:
   push: 
@@ -11,31 +11,24 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-      
       - name: Create .env file
-        run: |
-          echo "mongo_path=${{ secrets.mongo_path }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "port=${{ secrets.port }}" >> .env
-
+        run: echo "mongo_path=${{ secrets.mongo_path }}" >> .env
+        run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+        run: echo "port=${{ secrets.port }}" >> .env
       - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t bhaveshnarola333/nodejs-server .
-
+        run: docker build -t bhaveshnarola333/nodejs-server .  
       - name: Publish image to docker hub
         run: docker push bhaveshnarola333/nodejs-server:latest
-
+        
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
         run: docker pull bhaveshnarola333/nodejs-server:latest
-
       - name: Delete old container
-        run: docker rm -f nodejs-server-container
-
+        run: docker rm -f nodejs-server-container  
       - name: Run docker container
-        run: docker run -d -p 5000:5000 --name nodejs-server-container bhaveshnarola333/nodejs-server
+        run: docker run -d -p 5000:5000 --name nodejs-server-container bhaveshnarola333/nodejs-server 
