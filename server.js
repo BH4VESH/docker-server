@@ -48,6 +48,11 @@ app.use(bodyParser.json());
 
 // const JWT_SECRET = 'secret_key'; 
 
+app.get('/',(req,res)=>{
+  res.json(`serve is runing on port : ${port} `)
+  return
+})
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
