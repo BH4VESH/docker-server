@@ -16,7 +16,7 @@ jobs:
           echo "mongo_path=${{ secrets.mongo_path }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
           echo "port=${{ secrets.port }}" >> .env
-          
+
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
