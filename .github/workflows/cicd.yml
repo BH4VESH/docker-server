@@ -1,4 +1,4 @@
- name: Deploy Node Application
+name: Deploy Node Application
 
 on:
   push: 
