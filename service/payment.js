@@ -84,7 +84,8 @@ exports.chargeCustomer = async (customerId, amount, driverAcc, ride) => {
                     capture_method: 'automatic',
                     // receipt_email: 'narolabhavesh548@gmail.com',
 
-                    return_url: 'http://localhost:4200/admin/confirmed_rides'
+                    // return_url: 'http://localhost:4200/admin/confirmed_rides'
+                    return_url: '3.110.220.200:4200/admin/confirmed_rides'
                 });
 
                 const invoice = await stripe.invoices.create({
